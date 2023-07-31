@@ -73,7 +73,7 @@ const MyConetxtProvider=({children})=>{
             setisLoading(false)
             return
         }
-        let res = await axios.post("http://localhost:4000/sign-up",login)
+        let res = await axios.post("https://nearby-metro-service.onrender.com/sign-up",login)
         setisLoading(false)
         if(res.data.message=="Email Already Exists"){
             notify("faliure",res.data.message)
@@ -92,7 +92,7 @@ const MyConetxtProvider=({children})=>{
             setisLoading(false)
             return
         }
-        const result = await axios.post("http://localhost:4000/login",login)
+        const result = await axios.post("https://nearby-metro-service.onrender.com/login",login)
         console.log(result)
         if(result.data.status==403){
             notify("password","Email/Password is incorrect")
