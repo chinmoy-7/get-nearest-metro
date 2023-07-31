@@ -11,7 +11,7 @@ export const getMetro = async (
   try {
     const { lat, long } = req.body;
     const ipAddress:any =req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-    const result=await sendAPIRequest(ipAddress)
+    const result=await sendAPIRequest(JSON.stringify(ipAddress))
 
     if(result.region_iso_code=="DL"){
     const options = {
@@ -39,6 +39,7 @@ export const getMetro = async (
     })
   }
   } catch (error: any) {
+    console.log("<=================>")
     throw new Error(error);
   }
 };
