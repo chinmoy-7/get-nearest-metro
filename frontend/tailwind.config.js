@@ -6,6 +6,7 @@ module.exports = {
       backgroundImage:{
         train:"url('../public/landing.png')",
         signup:"url('../public/train.png')",
+        metro:"url('../public/metroback.png')",
       }
     },
   },

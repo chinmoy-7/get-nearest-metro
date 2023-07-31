@@ -2,6 +2,7 @@ import React,{useContext} from 'react'
 import { Link } from 'react-router-dom'
 import { MyContext } from '../context/ContextProvider'
 import { ToastContainer } from 'react-toastify'
+import { Rings } from 'react-loader-spinner'
 export default function Login() {
     const auth = useContext(MyContext)
   return (
@@ -28,9 +29,21 @@ export default function Login() {
                         </div>
                         <div className='flex flex-col w-3/4  justify-center items-center gap-4'>
                         <button type='button' onClick={auth.authLogin} className='button sm:w-1/2 w-1/2 bg-white/90 rounded-md text-orange-600 text-xl bir h-8 sm:h-12 '>Login</button>
+                        {auth.isLoading&&
+                        <Rings
+                        height="60"
+                        width="60"
+                        color="#4fa94d"
+                        radius="6"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                        ariaLabel="rings-loading"
+                        />}
+                        
                         <p className=' sm:hidden text-white text-sm font-medium'>Dont have an Account?<Link className='text-orange-500' to="/signup">Sign up</Link> </p>
                         </div>
-
+                    
                     </form>
                 </div>
             </div>

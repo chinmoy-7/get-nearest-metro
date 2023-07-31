@@ -7,6 +7,7 @@ const MyContext=createContext()
 const MyConetxtProvider=({children})=>{
     const [login,setLogin]=useState({email:"",password:"",cPassword:""})
     const [isLoading,setisLoading]=useState(false)
+    const [isLoggedIn,setIsLoggedIn]=useState({status:false,token:""})
     const navigate=useNavigate()
 
     const notify = (type,msg) =>{
@@ -95,20 +96,29 @@ const MyConetxtProvider=({children})=>{
         console.log(result)
         if(result.data.status==403){
             notify("password","Email/Password is incorrect")
+            setisLoading(false)
             return
         }
         if(result.data.status==404){
             notify("password","User Doesn't exists")
+            setisLoading(false)
+            return 
         }
+        setisLoading(false)
         sessionStorage.setItem("token",result.data.jwt_token)
         notify("success","User will be redirected in 3 second")
+        setIsLoggedIn({...isLoggedIn,status:true,token:result.data.jwt_token})
         setTimeout(()=>{
-            navigate("/")
+            navigate("/metro")
         },3000)
 
     }
+    const handleLogout=()=>{
+        setIsLoggedIn({...isLoggedIn,status:false,token:""})
+        sessionStorage.clear("token")
+    }
     return(
-        <MyContext.Provider value={{authSignup,setLogin,login,isLoading,authLogin}}>
+        <MyContext.Provider value={{authSignup,setLogin,login,isLoading,authLogin,isLoggedIn,handleLogout}}>
             {children}
         </MyContext.Provider>
     )
