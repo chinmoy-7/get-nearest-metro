@@ -118,7 +118,7 @@ const MyConetxtProvider=({children})=>{
         sessionStorage.clear("token")
     }
     return(
-        <MyContext.Provider value={{authSignup,setLogin,login,isLoading,authLogin,isLoggedIn,handleLogout}}>
+        <MyContext.Provider value={{authSignup,setLogin,login,isLoading,authLogin,isLoggedIn,handleLogout,notify,setisLoading}}>
             {children}
         </MyContext.Provider>
     )
