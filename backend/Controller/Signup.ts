@@ -10,6 +10,7 @@ export const getMetro = async (
 ) => {
   try {
     const { lat, long } = req.body;
+    console.log(lat,long,"<============")
     const ipAddress:any =req.headers["x-forwarded-for"] || req.socket.remoteAddress;
     const ip=ipAddress.split(",")
     console.log(ip,"IP<=================")
@@ -38,7 +39,7 @@ export const getMetro = async (
     });
   }else{
     return reply.send({
-      status:200,
+      status:400,
       message:"You are outside of delhi"
     })
   }
