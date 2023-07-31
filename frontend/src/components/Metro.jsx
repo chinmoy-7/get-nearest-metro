@@ -14,8 +14,7 @@ export default function Metro() {
     getCoord()
   },[])
   const getMetro=async()=>{
-    console.log(coord)
-    const result = await axios.get("https://nearby-metro-service.onrender.com/get-station",coord)
+    const result = await axios.post("https://nearby-metro-service.onrender.com/get-station",coord)
     console.log(result)
 
   }

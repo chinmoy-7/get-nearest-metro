@@ -9,6 +9,7 @@ export const getMetro = async (
   reply: express.Response
 ) => {
   try {
+    console.log(req.body)
     const { lat, long } = req.body;
     console.log(lat,long,"<============")
     const ipAddress:any =req.headers["x-forwarded-for"] || req.socket.remoteAddress;

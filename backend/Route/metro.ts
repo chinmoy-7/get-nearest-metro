@@ -4,6 +4,6 @@ import { getMetro } from '../Controller/Signup'
 
 const router = express.Router()
 
-router.get("/get-station",getMetro)
+router.post("/get-station",getMetro)
 
 export default router
