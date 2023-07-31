@@ -2,9 +2,9 @@ import route from "express";
 import {Login,Signup} from "../Controller/Login";
 const router = route.Router();
 
-router.post("/sign-up",Login);
+router.post("/sign-up",Signup);
 
-router.post("/login",Signup)
+router.post("/login",Login)
 
 
 export default router;

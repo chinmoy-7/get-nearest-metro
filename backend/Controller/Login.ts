@@ -4,7 +4,7 @@ import route from "express";
 import signup from "../Models/register";
 import dotenv from 'dotenv'
 dotenv.config()
-export const Login=async (req: route.Request, reply: route.Response) => {
+export const Signup=async (req: route.Request, reply: route.Response) => {
   try {
     const { email, password } = req.body;
     const isExist = await signup.findOne({email:email});
@@ -31,13 +31,14 @@ export const Login=async (req: route.Request, reply: route.Response) => {
   }
 }
 
-export const Signup=async (req:route.Request,reply:route.Response)=>{
+export const Login=async (req:route.Request,reply:route.Response)=>{
     try {
         const {email,password}=req.body
         const user:{email:string,password:string}|null = await signup.findOne({email:email})
+        console.log(user)
         if(!user){
-            reply.send({
-                status:200,
+            return reply.send({
+                status:404,
                 message:"No user Found"
             })
         }
@@ -48,13 +49,17 @@ export const Signup=async (req:route.Request,reply:route.Response)=>{
 
         if(isCheck){
             const token = jwt.sign({email:email},`${process.env.JWT_KEY}`)
-            reply.send({
+            return reply.send({
                 status:200,
                 jwt_token:token
             })
+        }else{
+          return reply.send({
+            status:403,
+            jwt_token:"Email/password is wrong"
+        })
         }
         }
-        
     } catch (error:any) {
         throw new Error(error)
     }
