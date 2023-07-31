@@ -12,7 +12,7 @@ export const getMetro = async (
     const { lat, long } = req.body;
     const ipAddress:any =req.headers["x-forwarded-for"] || req.socket.remoteAddress;
     const result=await sendAPIRequest(JSON.stringify(ipAddress))
-
+    console.log(process.env.X_RAPID_KEY,"<enviroment=================",result )
     if(result.region_iso_code=="DL"){
     const options = {
       method: "GET",
