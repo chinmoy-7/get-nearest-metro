@@ -47,6 +47,14 @@ const MyConetxtProvider=({children})=>{
           });
           return
         }
+        if(type=="server"){
+        toast.warn(msg,{
+            position:toast.POSITION.RIGHT,
+            autoClose:5000,
+            toastId:2
+        })
+        return
+    }
         toast.success(msg, {
             position: toast.POSITION.RIGHT,
             autoClose:3000,
@@ -73,6 +81,7 @@ const MyConetxtProvider=({children})=>{
             setisLoading(false)
             return
         }
+        notify("server","Since it is a free server, initally it might take 3-4min to respond")
         let res = await axios.post("https://nearby-metro-service.onrender.com/sign-up",login)
         setisLoading(false)
         if(res.data.message=="Email Already Exists"){
@@ -92,6 +101,7 @@ const MyConetxtProvider=({children})=>{
             setisLoading(false)
             return
         }
+        notify("server","Since it is a free server, initally it might take 3-4min to respond")
         const result = await axios.post("https://nearby-metro-service.onrender.com/login",login)
         console.log(result)
         if(result.data.status==403){

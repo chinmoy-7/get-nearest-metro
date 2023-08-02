@@ -13,13 +13,17 @@ export default function Metro() {
   const getCoord = async () => {
     navigator.geolocation.getCurrentPosition(async (loc) => {
       await setCoord({ lat: loc.coords.latitude, long: loc.coords.longitude });
+    },(err)=>{
+      notify("faliure","Please allow to access location!")
     });
   };
   useEffect(() => {
     getCoord();
   }, []);
   const getMetro = async () => {
-    setisLoading(true)
+    getCoord()
+    if(coord.lat!='' &&coord.long!=''){
+      setisLoading(true)
     const result = await axios.post(
       "https://nearby-metro-service.onrender.com/get-station",
       coord
@@ -34,6 +38,7 @@ export default function Metro() {
     setFetchedStation(true);
     // console.log(result.data.result);
   };
+  }
   return (
     <>
     <ToastContainer/>

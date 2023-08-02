@@ -15,7 +15,7 @@ function Landing() {
         </header>
         <div className='h-4/5 flex justify-center items-center lg:items-start '>
             <div className=' lg:h-5/6 h-4/6 lg:w-4/6 w-5/6  flex  flex-col justify-center gap-6 items-center backdrop-blur-md bg-white/5'>
-                <h1 className='text-white  lg:text-6xl text-2xl font-bold z-10 text-center leading-normal'>Find out your nearest<br/> Metro Station</h1>
+                <h1 className='text-white  lg:text-6xl text-2xl font-bold z-10 text-center leading-normal'>Find out your nearest<br/> Metro Station In Delhi</h1>
                 <Link className='lg:w-1/5  border-4 lg:border-8 border-white' to="/login"><button className='button w-full text-white text-2xl' >Find Out Now</button></Link>
             </div>
         </div>
